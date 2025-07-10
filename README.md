@@ -24,6 +24,21 @@ brew install hashicorp/tap/hashicorp-vagrant
 
 ## Usage
 
+### VM
+
+```shell
+# Create & Start VM
+$ vagrant up
+
+# SSH
+$ vagrant ssh
+
+# Stop VM
+$ vagrant halt
+
+# Destroy VM
+$ vagrant halt && vagrant destroy -f && rm -rf .vagrant
+```
 
 
 ## Reference
