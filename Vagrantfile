@@ -20,9 +20,15 @@ Vagrant.configure("2") do |config|
   # https://developer.hashicorp.com/vagrant/docs/provisioning
   config.vm.provision "shell", run: "always", inline: <<-SHELL
     apt-get update
-    apt-get install -y vim
+    apt-get install -y git vim
 
     apt-get autoremove -y
     apt-get clean
+  SHELL
+  config.vm.provision "shell", privileged: false, inline: <<-SHELL
+    # Git
+    # https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
+    git config --global user.name "#{ENV['CLAUDEBOX_GIT_USER_NAME']}"
+    git config --global user.email "#{ENV['CLAUDEBOX_GIT_USER_EMAIL']}"
   SHELL
 end

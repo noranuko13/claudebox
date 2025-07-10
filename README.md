@@ -28,7 +28,9 @@ brew install hashicorp/tap/hashicorp-vagrant
 
 ```shell
 # Create & Start VM
-$ vagrant up
+$ CLAUDEBOX_GIT_USER_NAME="claude" \
+  CLAUDEBOX_GIT_USER_EMAIL="claude@example.com" \
+  vagrant up
 
 # SSH
 $ vagrant ssh
