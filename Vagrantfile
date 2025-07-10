@@ -20,6 +20,7 @@ Vagrant.configure("2") do |config|
   # https://developer.hashicorp.com/vagrant/docs/provisioning
   config.vm.provision "shell", run: "always", inline: <<-SHELL
     apt-get update
+    apt-get install -y vim
 
     apt-get autoremove -y
     apt-get clean
