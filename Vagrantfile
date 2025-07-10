@@ -2,8 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  # Every Vagrant development environment requires a box. You can search for
-  # boxes at https://vagrantcloud.com/search.
+  # https://portal.cloud.hashicorp.com/vagrant/discover/bento/ubuntu-24.04
   config.vm.box = "bento/ubuntu-24.04"
   config.vm.box_version = "202502.21.0"
 
