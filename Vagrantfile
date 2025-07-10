@@ -16,11 +16,12 @@ Vagrant.configure("2") do |config|
   # https://developer.hashicorp.com/vagrant/docs/vagrantfile/ssh_settings
   config.ssh.key_type = :ed25519
 
-  # Enable provisioning with a shell script. Additional provisioners such as
-  # Ansible, Chef, Docker, Puppet and Salt are also available. Please see the
-  # documentation for more information about their specific syntax and use.
-  # config.vm.provision "shell", inline: <<-SHELL
-  #   apt-get update
-  #   apt-get install -y apache2
-  # SHELL
+  # Provisioning
+  # https://developer.hashicorp.com/vagrant/docs/provisioning
+  config.vm.provision "shell", run: "always", inline: <<-SHELL
+    apt-get update
+
+    apt-get autoremove -y
+    apt-get clean
+  SHELL
 end
