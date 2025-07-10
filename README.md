@@ -28,3 +28,4 @@ brew install hashicorp/tap/hashicorp-vagrant
 
 ## Reference
 
+- [Documentation - Vagrant - HashiCorp Developer](https://developer.hashicorp.com/vagrant/docs)
