@@ -37,5 +37,9 @@ Vagrant.configure("2") do |config|
     export VOLTA_HOME="$HOME/.volta"
     export PATH="$VOLTA_HOME/bin:$PATH"
     volta install "node@#{ENV['CLAUDEBOX_NODE_VERSION']}"
+
+    # Claude Code
+    # https://docs.anthropic.com/en/docs/claude-code/overview
+    npm install -g @anthropic-ai/claude-code
   SHELL
 end
