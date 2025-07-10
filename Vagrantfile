@@ -12,6 +12,10 @@ Vagrant.configure("2") do |config|
     vb.memory = 2048
   end
 
+  # SSH
+  # https://developer.hashicorp.com/vagrant/docs/vagrantfile/ssh_settings
+  config.ssh.key_type = :ed25519
+
   # Enable provisioning with a shell script. Additional provisioners such as
   # Ansible, Chef, Docker, Puppet and Salt are also available. Please see the
   # documentation for more information about their specific syntax and use.
