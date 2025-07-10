@@ -30,5 +30,12 @@ Vagrant.configure("2") do |config|
     # https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
     git config --global user.name "#{ENV['CLAUDEBOX_GIT_USER_NAME']}"
     git config --global user.email "#{ENV['CLAUDEBOX_GIT_USER_EMAIL']}"
+
+    # Volta
+    # https://docs.volta.sh/guide/getting-started
+    curl https://get.volta.sh | bash
+    export VOLTA_HOME="$HOME/.volta"
+    export PATH="$VOLTA_HOME/bin:$PATH"
+    volta install "node@#{ENV['CLAUDEBOX_NODE_VERSION']}"
   SHELL
 end
