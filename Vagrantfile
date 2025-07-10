@@ -41,5 +41,8 @@ Vagrant.configure("2") do |config|
     # Claude Code
     # https://docs.anthropic.com/en/docs/claude-code/overview
     npm install -g @anthropic-ai/claude-code
+
+    # claudebox
+    echo "cd /vagrant/repositories" >> ~/.bashrc
   SHELL
 end
