@@ -19,6 +19,7 @@ Vagrant.configure("2") do |config|
   # Provisioning
   # https://developer.hashicorp.com/vagrant/docs/provisioning
   config.vm.provision "shell", run: "always", inline: <<-SHELL
+    # Ubuntu
     apt-get update
     apt-get install -y git vim
 
