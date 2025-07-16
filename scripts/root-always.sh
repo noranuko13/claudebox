@@ -6,7 +6,6 @@ info "User: $USER, Run: Always"
 
 # Ubuntu
 apt-get update
-apt-get install -y vim
 
 apt-get autoremove -y
 apt-get clean
