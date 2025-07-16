@@ -18,45 +18,13 @@ Vagrant.configure("2") do |config|
 
   # Provisioning
   # https://developer.hashicorp.com/vagrant/docs/provisioning
-  config.vm.provision "shell", run: "always", inline: <<-SHELL
-    # Ubuntu
-    apt-get update
-    apt-get install -y git vim
-
-    apt-get autoremove -y
-    apt-get clean
-  SHELL
-  config.vm.provision "shell", run: "always", privileged: false, inline: <<-SHELL
-    # Git
-    # https://git-scm.com/docs/gitignore
-    mkdir -p $HOME/.config/git
-    cp /vagrant/provision/.config/git/ignore $HOME/.config/git/ignore
-    chown -R vagrant:vagrant $HOME/.config/git/ignore
-
-    # Claude Code
-    # https://docs.anthropic.com/en/docs/claude-code/settings
-    mkdir -p $HOME/.claude
-    cp /vagrant/provision/.claude/settings.json $HOME/.claude/settings.json
-    chown -R vagrant:vagrant $HOME/.claude/settings.json
-  SHELL
-  config.vm.provision "shell", privileged: false, inline: <<-SHELL
-    # Git
-    # https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup
-    git config --global user.name "#{ENV['CLAUDEBOX_GIT_USER_NAME']}"
-    git config --global user.email "#{ENV['CLAUDEBOX_GIT_USER_EMAIL']}"
-
-    # Volta
-    # https://docs.volta.sh/guide/getting-started
-    curl https://get.volta.sh | bash
-    export VOLTA_HOME="$HOME/.volta"
-    export PATH="$VOLTA_HOME/bin:$PATH"
-    volta install "node@#{ENV['CLAUDEBOX_NODE_VERSION']}"
-
-    # Claude Code
-    # https://docs.anthropic.com/en/docs/claude-code/overview
-    npm install -g @anthropic-ai/claude-code
-
-    # claudebox
-    echo "cd /vagrant/repositories" >> ~/.bashrc
-  SHELL
+  env = {
+    CLAUDEBOX_GIT_USER_NAME: ENV['CLAUDEBOX_GIT_USER_NAME'],
+    CLAUDEBOX_GIT_USER_EMAIL: ENV['CLAUDEBOX_GIT_USER_EMAIL'],
+    CLAUDEBOX_NODE_VERSION: ENV['CLAUDEBOX_NODE_VERSION'],
+  }
+  config.vm.provision "shell", path: "./scripts/root-once.sh"
+  config.vm.provision "shell", run: "always", path: "./scripts/root-always.sh"
+  config.vm.provision "shell", privileged: false, path: "./scripts/vagrant-once.sh", env: env
+  config.vm.provision "shell", privileged: false, run: "always", path: "./scripts/vagrant-always.sh"
 end
