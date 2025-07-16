@@ -4,6 +4,10 @@ source "/vagrant/scripts/utils/methods.sh"
 
 info "User: $USER, Run: Once"
 
+# Git
+apt-get install -y git
+info "$(git --version)"
+
 # Docker
 # https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
 apt-get update
