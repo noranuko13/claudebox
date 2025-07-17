@@ -1,5 +1,7 @@
 #!/bin/bash
 
 info () {
-  printf "\e[36m%s\e[m\n" "$1"
+  printf "%s\n" "$@" | while IFS= read -r line; do
+    printf "\e[36m%s\e[m\n" "$line"
+  done
 }

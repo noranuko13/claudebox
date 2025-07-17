@@ -25,5 +25,10 @@ info "node $(node --version), npm v$(npm --version)"
 npm install -g @anthropic-ai/claude-code
 info "v$(claude --version)"
 
+# MCP Server
+claude mcp add context7 --scope user -- npx -y @upstash/context7-mcp
+claude mcp add playwright --scope user -- npx -y @playwright/mcp@latest
+info "v$(claude mcp list)"
+
 # claudebox
 echo "cd /vagrant/repositories" >> ~/.bashrc
