@@ -73,3 +73,7 @@ Temporary Items
 
 ### JetBrains.gitignore
 .idea/
+
+
+### Claude.gitignore
+.claude/
